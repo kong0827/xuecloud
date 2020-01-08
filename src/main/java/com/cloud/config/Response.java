@@ -8,7 +8,7 @@ import lombok.Data;
 public class Response {
 
     private boolean isok;
-    private int code;   
+    private int code;
     private String message;
     private Object data;
 
@@ -18,11 +18,11 @@ public class Response {
         Response resultBean = new Response();
         resultBean.setIsok(false);
         resultBean.setCode(e.getCode());
-        if(e.getCode() == CustomExceptionType.USER_INPUT_ERROR.getCode()){
+        if (e.getCode() == CustomExceptionType.USER_INPUT_ERROR.getCode()) {
             resultBean.setMessage(e.getMessage());
-        }else if(e.getCode() == CustomExceptionType.SYSTEM_ERROR.getCode()){
+        } else if (e.getCode() == CustomExceptionType.SYSTEM_ERROR.getCode()) {
             resultBean.setMessage(e.getMessage() + ",系统出现异常，请联系管理员电话：188888xxxx进行处理!");
-        }else{
+        } else {
             resultBean.setMessage("系统出现未知异常，请联系管理员电话：188888xxxx进行处理!");
         }
         return resultBean;

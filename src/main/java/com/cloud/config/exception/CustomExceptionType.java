@@ -10,17 +10,32 @@ import lombok.Getter;
  */
 @Getter
 public enum CustomExceptionType {
-    USER_INPUT_ERROR(400,"用户输入异常"),
-    SYSTEM_ERROR (500,"系统服务异常"),
-    OTHER_ERROR(999,"其他未知异常");
+    /**
+     * 用户输入异常
+     */
+    USER_INPUT_ERROR(400, "用户输入异常"),
+    /**
+     * 系统服务异常
+     */
+    SYSTEM_ERROR(500, "系统服务异常"),
+    /**
+     * 其他未知异常
+     */
+    OTHER_ERROR(999, "其他未知异常");
 
     CustomExceptionType(int code, String typeDesc) {
         this.code = code;
         this.typeDesc = typeDesc;
     }
 
-    private String typeDesc;//异常类型中文描述
+    /**
+     * 异常类型中文描述
+     */
+    private String typeDesc;
 
-    private int code; //code
+    /**
+     * HTTP状态码
+     */
+    private int code;
 
 }
