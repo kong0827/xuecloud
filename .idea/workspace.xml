@@ -169,7 +169,7 @@
     <option name="generalSettings">
       <MavenGeneralSettings>
         <option name="localRepository" value="E:\maven_repository" />
-        <option name="mavenHome" value="E:/maven/apache-maven-3.5.2" />
+        <option name="mavenHome" value="$PROJECT_DIR$/../maven/apache-maven-3.5.2" />
         <option name="userSettingsFile" value="E:\maven\apache-maven-3.5.2\conf\settings.xml" />
       </MavenGeneralSettings>
     </option>
@@ -259,6 +259,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1578063368561" />
