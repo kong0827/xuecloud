@@ -22,6 +22,7 @@
 
 ### IDEA ###
 .idea/*
+.mvn/*
 *.iml
 */target/*
 */*.iml
