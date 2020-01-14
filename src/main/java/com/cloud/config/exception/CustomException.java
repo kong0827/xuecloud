@@ -5,7 +5,7 @@ import lombok.NoArgsConstructor;
 /**
  * @author 小k
  * @date 2020/1/3 21/42
- * @Desc 自定义异常类
+ * @desc自定义异常类
  */
 @NoArgsConstructor
 public class CustomException extends RuntimeException {
