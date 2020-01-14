@@ -7,7 +7,7 @@ import java.time.LocalDate;
 /**
  * @author kxj
  * @date 2020/1/3 22:18
- * @Desc 实体类基类
+ * @desc实体类基类
  */
 @Data
 public class BaseEntity {
