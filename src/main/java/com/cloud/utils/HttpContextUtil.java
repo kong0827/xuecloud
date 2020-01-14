@@ -1,5 +1,6 @@
 package com.cloud.utils;
 
+import com.cloud.config.Constant;
 import eu.bitwalker.useragentutils.Browser;
 import eu.bitwalker.useragentutils.UserAgent;
 import org.springframework.web.context.request.RequestContextHolder;
@@ -32,7 +33,7 @@ public class HttpContextUtil {
      */
     public static String getIpAddress() {
         HttpServletRequest request = getRequest();
-        String ip = request.getHeader("x-forwarded-for");
+        String ip = request.getHeader(Constant.HTTP_HEAD);
         if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
             ip = request.getHeader("Proxy-Client-IP");
         }

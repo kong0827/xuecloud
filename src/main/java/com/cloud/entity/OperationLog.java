@@ -16,20 +16,21 @@ public class OperationLog {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private  Long id;
-    @Column
+    @Column(length = 250)
     private  String ip;
-    @Column
-    private  String ipsource;
-    @Column
+    @Column(length = 250)
+    //请求地址来源——>省市区
+    private  String ipSource;
+    @Column(length = 2000)
     private  String description;
+    @Column(length = 250)
+    //发出请求的浏览器类型
+    private  String browserType;
+    @Column(length = 250)
+    //请求的参数
+    private  String reqParam;
     @Column
-    private  String browsertype;
-    @Column
-    private  String reqparam;
-    @Column
-    private  String excdetailt;
-    @Column
-    private Date createdate;
-    @Column
+    private Date createDate;
+    @Column(length = 250)
     private String remark;
 }

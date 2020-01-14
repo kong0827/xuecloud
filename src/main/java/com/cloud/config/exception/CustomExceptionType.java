@@ -1,5 +1,6 @@
 package com.cloud.config.exception;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 /**

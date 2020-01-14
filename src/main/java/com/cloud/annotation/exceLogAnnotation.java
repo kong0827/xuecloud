@@ -7,6 +7,7 @@ import java.lang.annotation.Target;
 
 @Target(ElementType.METHOD) // 方法注解
 @Retention(RetentionPolicy.RUNTIME) // 运行时可见
-public @interface ExceLogAnnotation {
-    String operateType();// 记录日志的操作类型
+public @interface exceLogAnnotation {
+    // 记录日志的操作类型
+    String operateType();
 }

@@ -1,6 +1,7 @@
 package com.cloud.entity;
 
 
+import io.swagger.annotations.ApiModel;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -12,27 +13,30 @@ import java.util.Date;
  */
 @Data
 @Entity
+@ApiModel("异常实体")
 @Table(name = "exceptionlog")
 public class ExceptionLog {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private  Long id;
-    @Column
+    @Column(length = 250)
     private  String ip;
-    @Column
-    private  String ipsource;
-    @Column
+    @Column(length = 250)
+    //请求的地址——>省市区
+    private  String ipSource;
+    @Column(length = 250)
     private  String description;
+    @Column(length = 250)
+    //请求的浏览器类型
+    private  String browserType;
+    @Column(length = 250)
+    private  String reqParam;
+    @Column(length = 2000)
+    //抛出的异常详情
+    private  String excDetailt;
     @Column
-    private  String browsertype;
-    @Column
-    private  String reqparam;
-    @Column
-    private  String excdetailt;
-    @Column
-    private  Date createdate;
-    @Column
+    private  Date createDate;
+    @Column(length = 250)
     private String remark;
-
 }

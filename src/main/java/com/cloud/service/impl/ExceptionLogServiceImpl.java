@@ -14,6 +14,10 @@ public class ExceptionLogServiceImpl implements ExceptionLogService {
     @Autowired
     private ExceptionLogRepository exceptionLogRepository;
 
+    /**
+     * 获取所有的异常日志信息
+     * @return
+     */
     @Override
     public List<ExceptionLog> getAllLog() {
         return exceptionLogRepository.findAll();

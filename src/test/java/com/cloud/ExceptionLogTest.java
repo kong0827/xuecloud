@@ -30,8 +30,8 @@ public class ExceptionLogTest {
         ExceptionLog log=new ExceptionLog();
         log.setId((long) 10);
         log.setIp("192.168.1.1");
-        log.setIpsource("上海市浦东新区");
-        log.setBrowsertype("chrome");
+        log.setIpSource("上海市浦东新区");
+        log.setBrowserType("chrome");
         log.setDescription("登录系统");
         ExceptionLog save = exceptionLogRepository.save(log);
         System.out.println(save.toString());
