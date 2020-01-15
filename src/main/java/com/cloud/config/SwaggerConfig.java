@@ -40,7 +40,7 @@ public class SwaggerConfig {
 
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo())
-                .enable(enable)
+                .enable(enable).groupName("xx")
                 .select()
                 //Controller所在包(必须新建包)
                 .apis(RequestHandlerSelectors.basePackage("com.cloud.controller"))
