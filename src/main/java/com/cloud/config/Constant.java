@@ -15,11 +15,14 @@ public class Constant {
      */
     public static final String SUCCESS_MESSAGE = "success";
 
-
     /**
      * 请求常量
      */
-
     public static final String HTTP_HEAD = "x-forwarded-for";
+
+    /**
+     * 未知IP
+     */
+    public static final String UNKNOWN_IP = "unknown";
 
 }

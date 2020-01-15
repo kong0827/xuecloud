@@ -3,6 +3,7 @@ package com.cloud.entity;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 /**
@@ -30,7 +31,7 @@ public class OperationLog {
     //请求的参数
     private  String reqParam;
     @Column
-    private Date createDate;
+    private LocalDateTime createDate;
     @Column(length = 250)
     private String remark;
 }

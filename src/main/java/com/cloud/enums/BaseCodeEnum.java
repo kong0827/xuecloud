@@ -11,7 +11,6 @@ public interface BaseCodeEnum {
 
     /**
      * 获取Code值
-     *
      * @return Code值
      */
     short getCode();
@@ -20,7 +19,6 @@ public interface BaseCodeEnum {
 
     /**
      * 将数值转换为枚举类
-     *
      * @param clazz 枚举类型
      * @param code  值
      * @param <E>   枚举
@@ -40,7 +38,6 @@ public interface BaseCodeEnum {
 
     /**
      * 将状态量转换为枚举类
-     *
      * @param clazz  枚举类型
      * @param status 值
      * @param <E>    枚举

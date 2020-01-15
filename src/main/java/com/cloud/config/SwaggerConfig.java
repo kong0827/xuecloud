@@ -1,7 +1,10 @@
 package com.cloud.config;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.env.Environment;
+import org.springframework.core.env.Profiles;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
@@ -18,12 +21,26 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
  */
 @EnableSwagger2
 @Configuration
-public class swagger2Config {
+public class SwaggerConfig {
+
+    /**
+     * 设置是否显示接口文档
+     */
+    @Value("${swagger.enable}")
+    private boolean enable;
 
     @Bean
-    public Docket createRestApi() {
+    public Docket createRestApi(Environment environment) {
+
+        /**
+         * 设置要显示文档的环境（或者采用上面的属性注入的方式）
+         */
+        Profiles profiles = Profiles.of("dev", "test");
+        boolean isActive = environment.acceptsProfiles(profiles);
+
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo())
+                .enable(enable)
                 .select()
                 //Controller所在包(必须新建包)
                 .apis(RequestHandlerSelectors.basePackage("com.cloud.controller"))

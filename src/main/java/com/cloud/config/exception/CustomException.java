@@ -1,7 +1,6 @@
 package com.cloud.config.exception;
 
 import lombok.NoArgsConstructor;
-
 /**
  * @author 小k
  * @date 2020/1/3 21/42

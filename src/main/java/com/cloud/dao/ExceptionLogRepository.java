@@ -10,5 +10,5 @@ import org.springframework.stereotype.Repository;
  * @date 2020/1/8 23:14
  */
 @Repository
-public interface ExceptionLogRepository  extends JpaRepository<ExceptionLog,Long> {
+public interface ExceptionLogRepository extends JpaRepository<ExceptionLog, Long> {
 }

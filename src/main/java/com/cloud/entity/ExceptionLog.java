@@ -3,8 +3,8 @@ package com.cloud.entity;
 
 import io.swagger.annotations.ApiModel;
 import lombok.Data;
-
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 /**
@@ -34,9 +34,9 @@ public class ExceptionLog {
     private  String reqParam;
     @Column(length = 2000)
     //抛出的异常详情
-    private  String excDetailt;
+    private  String excDetail;
     @Column
-    private  Date createDate;
+    private LocalDateTime createDate;
     @Column(length = 250)
     private String remark;
 }

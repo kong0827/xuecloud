@@ -12,7 +12,11 @@ public class Response {
     private String message;
     private Object data;
 
-    //请求出现异常时的响应数据封装
+    /**
+     * 请求异常时的响应数据封装
+     * @param e 异常
+     * @return
+     */
     public static Response error(CustomException e) {
 
         Response resultBean = new Response();
@@ -28,6 +32,10 @@ public class Response {
         return resultBean;
     }
 
+    /**
+     * 请求成功响应(无响应数据)
+     * @return
+     */
     public static Response success() {
         Response resultBean = new Response();
         resultBean.setIsok(true);
@@ -36,6 +44,10 @@ public class Response {
         return resultBean;
     }
 
+    /**
+     * 请求成功响应(有响应数据)
+     * @return
+     */
     public static Response success(Object data) {
         Response resultBean = new Response();
         resultBean.setIsok(true);

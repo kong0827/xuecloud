@@ -1,6 +1,5 @@
 package com.cloud.utils;
 
-import com.cloud.config.Constant;
 import eu.bitwalker.useragentutils.Browser;
 import eu.bitwalker.useragentutils.UserAgent;
 import org.springframework.web.context.request.RequestContextHolder;
@@ -13,6 +12,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import com.cloud.config.Constant;
 
 /**
  * @author Lee
@@ -34,19 +34,19 @@ public class HttpContextUtil {
     public static String getIpAddress() {
         HttpServletRequest request = getRequest();
         String ip = request.getHeader(Constant.HTTP_HEAD);
-        if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+        if (ip == null || ip.length() == 0 || Constant.UNKNOWN_IP.equalsIgnoreCase(ip)) {
             ip = request.getHeader("Proxy-Client-IP");
         }
-        if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+        if (ip == null || ip.length() == 0 || Constant.UNKNOWN_IP.equalsIgnoreCase(ip)) {
             ip = request.getHeader("WL-Proxy-Client-IP");
         }
-        if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+        if (ip == null || ip.length() == 0 || Constant.UNKNOWN_IP.equalsIgnoreCase(ip)) {
             ip = request.getHeader("HTTP_CLIENT_IP");
         }
-        if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+        if (ip == null || ip.length() == 0 || Constant.UNKNOWN_IP.equalsIgnoreCase(ip)) {
             ip = request.getHeader("HTTP_X_FORWARDED_FOR");
         }
-        if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+        if (ip == null || ip.length() == 0 || Constant.UNKNOWN_IP.equalsIgnoreCase(ip)) {
             ip = request.getRemoteAddr();
         }
         return ip;
@@ -58,7 +58,11 @@ public class HttpContextUtil {
         Browser browser = userAgent.getBrowser();
         return browser.getName();
     }
-    //getQueryString
+
+    /**
+     * getQueryString
+     * @return
+     */
     public static String getParam() {
         HttpServletRequest request = getRequest();
         return request.getRequestURI();

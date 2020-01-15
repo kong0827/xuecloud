@@ -1,6 +1,6 @@
 package com.cloud.controller;
 
-import com.cloud.annotation.exceLogAnnotation;
+import com.cloud.annotation.ExceptionLogAnnotation;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Api(value = "用户操作")
 public class UserController {
     //模拟用户登录操作
-    @exceLogAnnotation(operateType = "用户登录")
+    @ExceptionLogAnnotation(operateType = "用户登录")
     @RequestMapping(value = "/login",method = RequestMethod.GET)
     @ApiOperation(value = "登陆方法")
     public void login() throws Exception {
