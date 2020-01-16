@@ -1,6 +1,6 @@
 package com.cloud.controller;
 
-import com.cloud.annotation.ExceptionLogAnnotation;
+import com.cloud.annotation.exceptionLogAnnotation;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,11 +16,17 @@ import org.springframework.web.bind.annotation.RestController;
 @Api(value = "用户操作")
 public class UserController {
     //模拟用户登录操作
-    @ExceptionLogAnnotation(operateType = "用户登录")
+    @exceptionLogAnnotation(operateType = "用户登录")
     @RequestMapping(value = "/login",method = RequestMethod.GET)
     @ApiOperation(value = "登陆方法")
     public void login() throws Exception {
-        throw new RuntimeException();
+        throw new RuntimeException("没有任何信息");
     }
 
+    @exceptionLogAnnotation(operateType = "用户登陆2")
+    @RequestMapping(value = "/anlogin",method = RequestMethod.GET)
+    @ApiOperation("第二个登陆方法")
+    public void antlogin() throws Exception {
+        throw new RuntimeException("没有任何信息");
+    }
 }

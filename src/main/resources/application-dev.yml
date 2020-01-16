@@ -11,7 +11,8 @@ spring:
     hibernate:
       ddl-auto: update #会在根据创建的类创建数据表
       dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+      naming:
+        physical-strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
     show-sql: true
-
 swagger:
   enable: true

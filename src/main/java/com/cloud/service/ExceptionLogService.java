@@ -4,6 +4,7 @@ import com.cloud.entity.ExceptionLog;
 
 import java.util.List;
 
+
 public interface ExceptionLogService {
 
     /**

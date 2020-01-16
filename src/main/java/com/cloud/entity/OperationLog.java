@@ -17,21 +17,21 @@ public class OperationLog {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private  Long id;
-    @Column(length = 250)
+    @Column(name = "ip",columnDefinition = "varchar(20)")
     private  String ip;
-    @Column(length = 250)
+    @Column(name = "ipSource",columnDefinition = "varchar(250)")
     //请求地址来源——>省市区
     private  String ipSource;
-    @Column(length = 2000)
+    @Column(name = "description",columnDefinition = "varchar(2000)")
     private  String description;
-    @Column(length = 250)
+    @Column(name = "browserType",columnDefinition = "varchar(250)")
     //发出请求的浏览器类型
     private  String browserType;
-    @Column(length = 250)
+    @Column(name = "reqParam",columnDefinition = "varchar(250)")
     //请求的参数
     private  String reqParam;
     @Column
     private LocalDateTime createDate;
-    @Column(length = 250)
-    private String remark;
+    @Column(name = "reMark",columnDefinition = "varchar(250)")
+    private String reMark;
 }

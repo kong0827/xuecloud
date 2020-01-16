@@ -30,7 +30,7 @@ public class SwaggerConfig {
     private boolean enable;
 
     @Bean
-    public Docket createRestApi(Environment environment) {
+    public Docket createRestApi1(Environment environment) {
 
         /**
          * 设置要显示文档的环境（或者采用上面的属性注入的方式）
@@ -41,6 +41,26 @@ public class SwaggerConfig {
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo())
                 .enable(enable)
+                .groupName("lee")
+                .select()
+                //Controller所在包(必须新建包)
+                .apis(RequestHandlerSelectors.basePackage("com.cloud.controller"))
+                .paths(PathSelectors.any())
+                .build();
+    }
+    @Bean
+    public Docket createRestApi2(Environment environment) {
+
+        /**
+         * 设置要显示文档的环境（或者采用上面的属性注入的方式）
+         */
+        Profiles profiles = Profiles.of("dev", "test");
+        boolean isActive = environment.acceptsProfiles(profiles);
+
+        return new Docket(DocumentationType.SWAGGER_2)
+                .apiInfo(apiInfo())
+                .enable(enable)
+                .groupName("Lee2")
                 .select()
                 //Controller所在包(必须新建包)
                 .apis(RequestHandlerSelectors.basePackage("com.cloud.controller"))
@@ -50,16 +70,13 @@ public class SwaggerConfig {
 
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                //接口文档的名字
-                .title("xuecloud api")
-                //接口文档的描述
-                .description("xuecloud api接口文档")
-                //服务条款网址
-                .termsOfServiceUrl("http://localhost/")
-                //接口文档的版本
-                .version("1.0.0")
-                // 接口文档维护联系信息
-                .contact(new Contact("lee", "", "lee@163.com"))
+                // 标题
+                .title("xuecloud项目接口文档")
+                // 描述
+                .description("xuecloud项目")
+                // 联系
+                .contact(new Contact("Lee", "http://www.baidu.com","lee@qq.com"))
+                .version("1.1.0")// 版本
                 .build();
     }
 }

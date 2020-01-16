@@ -7,11 +7,14 @@ import java.lang.annotation.Target;
 
 /**
  * @author Lee
- * @date 2020-1-15 11:26:40
+ * @date 2020-1-15 11:18:30
  */
 @Target(ElementType.METHOD) // 方法注解
 @Retention(RetentionPolicy.RUNTIME) // 运行时可见
-public @interface ExceptionLogAnnotation {
-    // 记录日志的操作类型
+public @interface operationLogAnnotation {
+    /**
+     * 操作类型
+     * @return
+     */
     String operateType();
 }

@@ -1,7 +1,7 @@
 package com.cloud.aspect;
 
 
-import com.cloud.annotation.ExceptionLogAnnotation;
+import com.cloud.annotation.exceptionLogAnnotation;
 import com.cloud.dao.ExceptionLogRepository;
 import com.cloud.entity.ExceptionLog;
 import com.cloud.utils.ExceptionUtils;
@@ -23,33 +23,33 @@ import java.util.Date;
  */
 @Aspect
 @Component
-public class ExceptionLogAopAspect {
+public class exceptionLogAopAspect {
 
     @Autowired
     private ExceptionLogRepository exceptionLogRepository;
 
-    /**
-     * 设置操作异常切入点记录异常日志 扫描所有controller包下操作
-     */
-    @Pointcut("execution(* com.cloud.controller..*.*(..))")
-      public void exceptionLogAopAspect() {
-    }
+//    /**
+//     * 设置操作异常切入点记录异常日志 扫描所有controller包下操作
+//     */
+//    @Pointcut("execution(* com.cloud.controller..*.*(..))")
+//      public void exceptionLogAopAspect() {
+//    }
 
     /**
      * 设置操作日志切入点 记录操作日志 在注解的位置切入代码
      */
-    @Pointcut("@annotation(com.cloud.annotation.ExceptionLogAnnotation)")
+    @Pointcut("@annotation(com.cloud.annotation.exceptionLogAnnotation)")
      public void exceptionLogPointCut() { }
 
     @AfterThrowing(value = "exceptionLogPointCut()",throwing = "e")
-    public Object aroundAdvice(JoinPoint joinPoint, Throwable e) throws Throwable {
+    public Object AfterAdvice(JoinPoint joinPoint, Throwable e) throws Throwable {
         // 1.方法执行前的处理，相当于前置通知
         // 获取方法签名
         MethodSignature methodSignature = (MethodSignature) joinPoint.getSignature();
         // 获取方法
         Method method = methodSignature.getMethod();
         // 获取方法上面的注解
-        ExceptionLogAnnotation logAnnotation = method.getAnnotation(ExceptionLogAnnotation.class);
+        exceptionLogAnnotation logAnnotation = method.getAnnotation(exceptionLogAnnotation.class);
         // 获取操作描述的属性值
         String operateDesc = logAnnotation.operateType();
         // 创建一个日志对象(准备记录日志)

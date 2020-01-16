@@ -14,11 +14,12 @@ public class ExceptionUtils {
      * @return
      */
     public static String stackTraceToString(String exceptionName, String exceptionMessage, StackTraceElement[] elements) {
-        StringBuffer strbuff = new StringBuffer();
+        StringBuffer strBuff = new StringBuffer();
         for (StackTraceElement stet : elements) {
-            strbuff.append(stet + "\n");
+            strBuff.append(stet + "\n");
         }
-        String message = exceptionName + ":" + exceptionMessage + "\n\t" + strbuff.toString();
+
+        String message = exceptionName + ":" + exceptionMessage + "\n\t" + strBuff.toString();
         return message;
     }
  }
