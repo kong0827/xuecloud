@@ -1,19 +1,18 @@
 package com.cloud.utils;
 
-import com.cloud.config.exception.CustomException;
-import com.cloud.config.exception.CustomExceptionType;
+
+import com.cloud.entity.vo.ipAddressVo;
+import com.cloud.enums.IspEnum;
 import eu.bitwalker.useragentutils.Browser;
 import eu.bitwalker.useragentutils.UserAgent;
+import org.springframework.http.*;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
-import java.io.BufferedReader;
-import java.io.DataOutputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import com.cloud.config.Constant;
 
 /**
@@ -71,89 +70,25 @@ public class HttpContextUtil {
     }
 
     /**
-     * @content 请求的参数 格式为：name=xxx&pwd=xxx
-     * @encoding 服务器端请求编码。如GBK,UTF-8等
-     * @return
+     * 更具请求ip获取真实地址
+     * @param ip 目标IP地址
+     * @return 返回resultVo
      */
-    public static String getAddresses(String ip) {
-        // 这里调用pconline的接口
-        String urlStr = "http://whois.pconline.sscom.cn/ipJson.jsp";
-        // 从http://whois.pconline.com.cn取得IP所在的省市区信息
-        String encoding = getRequest().getCharacterEncoding();
-        String returnStr = getResult(urlStr, "ip="+ip,encoding);
-        if (returnStr != null) {
-        // 处理返回的省市区信息
-            int startIndex = returnStr.indexOf("\"pro");
-            int endIndex = returnStr.indexOf(",\"addr");
-            if (startIndex > 0 && endIndex > 0 && endIndex > startIndex) {
-                returnStr = returnStr.substring(startIndex, endIndex);
-                returnStr = returnStr.replaceAll("\"", "").replace("pro:", "")
-                        .replace("city:", "").replace("region:", "");
-            }
-        }
-        return returnStr;
+    public static String getRealAddress(String ip){
+        RestTemplate client = new RestTemplate();
+        HttpHeaders headers = new HttpHeaders();
+        HttpMethod method = HttpMethod.POST;
+        headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
+        MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
+        params.add("ak",Constant.BAIDU_MAP_AK);
+        params.add("ip","101.231.189.62");
+        params.add("coor","bd09ll");
+        HttpEntity<MultiValueMap<String, String>> requestEntity = new HttpEntity<>(params, headers);
+        ResponseEntity<ipAddressVo> response = client.exchange(Constant.BAIDU_MAP_URL,method,requestEntity, ipAddressVo.class);
+        //获取运营商
+        String type= response.getBody().getAddress().split("[|]]")[4];
+        //返回的是省市区的字符串
+        return response.getBody().getContent().getAddress_detail().getProvince()+"|"+response.getBody().getContent().getAddress_detail().getCity()+"|"+response.getBody().getContent().getAddress_detail().getDistrict()+"  "+ IspEnum.valueOf(type);
     }
 
-    /**
-     * @param urlStr
-     *            请求的地址
-     * @paramcontent
-     *            请求的参数 格式为：name=xxx&pwd=xxx
-     * @param encoding
-     *            服务器端请求编码。如GBK,UTF-8等
-     * @return
-     */
-    private static String getResult(String urlStr, String ip, String encoding) {
-        URL url = null;
-        HttpURLConnection connection = null;
-        try {
-            url = new URL(urlStr);
-            // 新建连接实例
-            connection = (HttpURLConnection) url.openConnection();
-            // 设置连接超时时间，单位毫秒
-            connection.setConnectTimeout(2000);
-            // 设置读取数据超时时间，单位毫秒
-            connection.setReadTimeout(2000);
-
-            // 是否打开输出流 true|false
-            connection.setDoOutput(true);
-            // 是否打开输入流true|false
-            connection.setDoInput(true);
-            // 提交方法POST|GET
-            connection.setRequestMethod("POST");
-            // 是否缓存true|false
-            connection.setUseCaches(false);
-            // 打开连接端口
-            connection.connect();
-
-            // 打开输出流往对端服务器写数据
-            DataOutputStream out = new DataOutputStream(connection
-                    .getOutputStream());
-            // 写数据,也就是提交你的表单 name=xxx&pwd=xxx
-            out.writeBytes(ip);
-            // 刷新
-            out.flush();
-            // 关闭输出流
-            out.close();
-            // 往对端写完数据对端服务器返回数据
-            BufferedReader reader = new BufferedReader(new InputStreamReader(
-                    connection.getInputStream(), encoding));
-            // ,以BufferedReader流来读取
-            StringBuffer buffer = new StringBuffer();
-            String line = "";
-            while ((line = reader.readLine()) != null) {
-                buffer.append(line);
-            }
-            reader.close();
-            return buffer.toString();
-        } catch (IOException e) {
-            new CustomException(CustomExceptionType.SYSTEM_ERROR,"location:com.cloud.utils.HttpContextUtil;method:getResult;execptionType:IOException");
-        } finally {
-            if (connection != null) {
-                // 关闭连接
-                connection.disconnect();
-            }
-        }
-        return null;
-    }
 }

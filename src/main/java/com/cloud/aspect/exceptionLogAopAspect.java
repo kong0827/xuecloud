@@ -68,7 +68,7 @@ public class exceptionLogAopAspect {
         // 设置操作日期
         log.setCreateDate(LocalDateTime.now());
         //getAddresses 设置请求归属地
-        log.setIpSource(HttpContextUtil.getAddresses(ip));
+        log.setIpSource(HttpContextUtil.getRealAddress(ip));
         // 添加日志记录
         return exceptionLogRepository.save(log);
     }

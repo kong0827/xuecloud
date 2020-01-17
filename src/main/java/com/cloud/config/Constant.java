@@ -25,4 +25,14 @@ public class Constant {
      */
     public static final String UNKNOWN_IP = "unknown";
 
+    /**
+     * baidu map ak
+     */
+    public static final String BAIDU_MAP_AK = "Vnw1bRGQhh7VHqGpHbySuo76OXKE0vKF";
+
+    /**
+     * baidu map url
+     */
+    public static final String BAIDU_MAP_URL = "http://api.map.baidu.com/location/ip";
+
 }
