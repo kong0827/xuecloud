@@ -86,9 +86,10 @@ public class HttpContextUtil {
         HttpEntity<MultiValueMap<String, String>> requestEntity = new HttpEntity<>(params, headers);
         ResponseEntity<ipAddressVo> response = client.exchange(Constant.BAIDU_MAP_URL,method,requestEntity, ipAddressVo.class);
         //获取运营商
-        String type= response.getBody().getAddress().split("[|]]")[4];
+        String type= response.getBody().getAddress().split("[|]")[4];
+        String a=IspEnum.getIspDescByIsp(type).getIspDesc();
         //返回的是省市区的字符串
-        return response.getBody().getContent().getAddress_detail().getProvince()+"|"+response.getBody().getContent().getAddress_detail().getCity()+"|"+response.getBody().getContent().getAddress_detail().getDistrict()+"  "+ IspEnum.valueOf(type);
+        return response.getBody().getContent().getAddress_detail().getProvince()+"|"+response.getBody().getContent().getAddress_detail().getCity()+"|"+response.getBody().getContent().getAddress_detail().getDistrict()+"  "+ IspEnum.getIspDescByIsp(type).getIspDesc();
     }
 
 }

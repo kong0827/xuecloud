@@ -1,10 +1,14 @@
 package com.cloud.enums;
 
+import com.alibaba.druid.util.StringUtils;
+import lombok.Getter;
+
 /**
  * @author QFu
  * @date 2020/1/17 17:28
  * @description
  */
+@Getter
 public enum IspEnum {
             CHINANET("CHINANET","中国电信"),
             UNICOM("UNICOM","中国联通"),
@@ -20,5 +24,13 @@ public enum IspEnum {
     IspEnum(String isp, String ispDesc) {
         this.isp = isp;
         this.ispDesc = ispDesc;
+    }
+    public static  IspEnum getIspDescByIsp(String isp){
+        for(IspEnum ispEnum : IspEnum.values()){
+            if(StringUtils.equals(isp, ispEnum.getIsp())){
+                return ispEnum;
+            }
+        }
+        return null;
     }
 }
