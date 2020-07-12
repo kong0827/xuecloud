@@ -20,6 +20,7 @@ public class UserController {
     @RequestMapping(value = "/login",method = RequestMethod.GET)
     @ApiOperation(value = "登陆方法")
     public void login() throws Exception {
+        System.out.println("----");
         throw new RuntimeException();
     }
 

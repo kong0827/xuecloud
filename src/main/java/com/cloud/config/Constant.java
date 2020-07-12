@@ -3,7 +3,7 @@ package com.cloud.config;
 /**
  * @author kxj
  * @date 2020/1/3 22:01
- * @desc常量
+ * @desc 常量
  */
 public class Constant {
     /**

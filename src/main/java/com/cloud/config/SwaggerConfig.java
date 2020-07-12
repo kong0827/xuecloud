@@ -35,8 +35,8 @@ public class SwaggerConfig {
         /**
          * 设置要显示文档的环境（或者采用上面的属性注入的方式）
          */
-        Profiles profiles = Profiles.of("dev", "test");
-        boolean isActive = environment.acceptsProfiles(profiles);
+//        Profiles profiles = Profiles.of("dev", "test");
+//        boolean enable = environment.acceptsProfiles(profiles);
 
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo())
